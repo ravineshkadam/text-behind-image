@@ -4,12 +4,21 @@ import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || '', 
-  process.env.SUPABASE_SERVICE_ROLE_KEY || ''
-)
+const supabaseAdmin = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
+  ? createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL, 
+      process.env.SUPABASE_SERVICE_ROLE_KEY
+    )
+  : null;
 
 export async function POST(req: Request) {
+  // Check if Stripe is configured
+  if (!stripe) {
+    return NextResponse.json({ 
+      error: "Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable." 
+    }, { status: 500 });
+  }
+
   let event: Stripe.Event;
 
   try {
@@ -58,13 +67,15 @@ export async function POST(req: Request) {
         const stripeDataJSON = JSON.parse(JSON.stringify(stripeData));
         console.log(stripeDataJSON)
 
-        await supabaseAdmin
-          .from('profiles') 
-          .update({  
-            paid: true,
-            subscription_id: stripeDataJSON.subscription
-          })    
-          .eq('id', stripeDataJSON.metadata.user_id)
+        if (supabaseAdmin) {
+          await supabaseAdmin
+            .from('profiles') 
+            .update({  
+              paid: true,
+              subscription_id: stripeDataJSON.subscription
+            })    
+            .eq('id', stripeDataJSON.metadata.user_id)
+        }
       }
     } catch (error) {  
       console.log(error);
