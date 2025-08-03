@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    output: 'standalone',
     images: {
         remotePatterns: [
             {
@@ -24,6 +25,11 @@ const nextConfig = {
         },
       ];
     },
+
+    // Skip static generation for pages that need runtime environment variables
+    generateBuildId: async () => {
+      return 'text-behind-image-' + Date.now()
+    }
 };
 
 export default nextConfig;

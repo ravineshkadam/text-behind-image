@@ -2,6 +2,13 @@ import { stripe } from "@/lib/stripe";
 
 export async function POST(req: Request, res: Response) {
     try {
+        // Check if Stripe is configured
+        if (!stripe) {
+            return Response.json({ 
+                error: "Payment processing is not configured. Please set up Stripe environment variables." 
+            }, { status: 500 });
+        }
+
         const body = await req.json();
         const { user_id, email, plan_name, plan_type } = body;
         
