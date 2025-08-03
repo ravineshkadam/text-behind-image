@@ -2,6 +2,13 @@ import { stripe } from "@/lib/stripe";
 
 export async function POST(req: Request, res: Response) {
     try {
+        // Check if Stripe is configured
+        if (!stripe) {
+            return Response.json({ 
+                error: "Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable." 
+            }, { status: 500 });
+        }
+
         const body = await req.json();
         const { user_id, email, plan_name, plan_type } = body;
         
