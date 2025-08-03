@@ -1,0 +1,368 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 50px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+}
+
+.example {
+    margin-bottom: 60px;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.example h2 {
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 1.5rem;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 10px;
+}
+
+/* Base effect container */
+.effect-container {
+    position: relative;
+    height: 400px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* Background text styling */
+.background-text {
+    position: absolute;
+    font-size: 8rem;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.05);
+    z-index: 1;
+    user-select: none;
+    pointer-events: none;
+    letter-spacing: 0.2em;
+    transform: translateY(-20px);
+}
+
+.large-text {
+    font-size: 10rem;
+    color: rgba(102, 126, 234, 0.1);
+}
+
+/* Objects */
+.object {
+    position: absolute;
+    z-index: 2;
+}
+
+.circle {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+    border-radius: 50%;
+    box-shadow: 0 20px 40px rgba(255, 107, 107, 0.3);
+}
+
+.image-placeholder {
+    width: 300px;
+    height: 200px;
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    font-size: 1.2rem;
+    box-shadow: 0 20px 40px rgba(68, 160, 141, 0.3);
+}
+
+.placeholder-content span {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 180px solid #feca57;
+    filter: drop-shadow(0 20px 20px rgba(254, 202, 87, 0.3));
+}
+
+.rotated-rectangle {
+    width: 250px;
+    height: 150px;
+    background: linear-gradient(45deg, #a8e6cf, #88d8c0);
+    transform: rotate(15deg);
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(136, 216, 192, 0.3);
+}
+
+/* Foreground content */
+.foreground-content {
+    position: absolute;
+    z-index: 3;
+    text-align: center;
+    color: #333;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.foreground-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.foreground-content p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    max-width: 300px;
+}
+
+/* Example 1: Circle Effect */
+.circle-effect .background-text {
+    color: rgba(255, 107, 107, 0.15);
+    transform: rotate(-5deg) translateY(-20px);
+}
+
+.circle-effect .foreground-content {
+    bottom: 50px;
+    left: 50px;
+}
+
+/* Example 2: Image Effect */
+.image-effect .background-text {
+    transform: rotate(90deg) translateX(100px);
+    right: -50px;
+}
+
+.image-effect .foreground-content {
+    left: 50px;
+    top: 50px;
+}
+
+/* Example 3: Multiple Text Layers */
+.geometric-effect .text-1 {
+    top: 20px;
+    left: 50px;
+    color: rgba(254, 202, 87, 0.2);
+    font-size: 6rem;
+    transform: rotate(-10deg);
+}
+
+.geometric-effect .text-2 {
+    top: 120px;
+    right: 100px;
+    color: rgba(255, 107, 107, 0.15);
+    font-size: 7rem;
+    transform: rotate(5deg);
+}
+
+.geometric-effect .text-3 {
+    bottom: 50px;
+    left: 200px;
+    color: rgba(102, 126, 234, 0.1);
+    font-size: 5rem;
+    transform: rotate(-15deg);
+}
+
+.geometric-effect .foreground-content {
+    top: 50px;
+    right: 50px;
+}
+
+/* Example 4: Rotated Effect */
+.rotated-effect .rotated-text {
+    transform: rotate(-20deg);
+    color: rgba(168, 230, 207, 0.3);
+    font-size: 9rem;
+    left: -100px;
+}
+
+.rotated-effect .foreground-content {
+    right: 50px;
+    bottom: 50px;
+}
+
+/* Example 5: Cutout Effect */
+.cutout-effect {
+    background: #2c3e50;
+}
+
+.background-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #48cae4, #a8e6cf);
+    z-index: 1;
+}
+
+.cutout-text {
+    position: absolute;
+    font-size: 12rem;
+    font-weight: 900;
+    z-index: 2;
+    background: #2c3e50;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    mix-blend-mode: multiply;
+    user-select: none;
+}
+
+.cutout-effect .foreground-content {
+    background: rgba(44, 62, 80, 0.9);
+    color: white;
+    bottom: 50px;
+    right: 50px;
+}
+
+/* Example 6: Interactive Hover Effect */
+.hover-effect .animated-text {
+    transition: all 0.3s ease;
+    color: rgba(102, 126, 234, 0.1);
+}
+
+.interactive-circle {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+}
+
+.interactive-circle:hover {
+    transform: scale(1.2) rotate(10deg);
+    box-shadow: 0 30px 60px rgba(102, 126, 234, 0.5);
+}
+
+.hover-effect:hover .animated-text {
+    color: rgba(102, 126, 234, 0.3);
+    transform: scale(1.1) rotate(-5deg);
+    text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+}
+
+.hover-effect .foreground-content {
+    top: 50px;
+    left: 50px;
+    transition: all 0.3s ease;
+}
+
+.hover-effect:hover .foreground-content {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .effect-container {
+        height: 300px;
+    }
+    
+    .background-text {
+        font-size: 4rem;
+    }
+    
+    .large-text {
+        font-size: 5rem;
+    }
+    
+    .foreground-content {
+        padding: 20px;
+    }
+    
+    .foreground-content h3 {
+        font-size: 1.4rem;
+    }
+    
+    .foreground-content p {
+        font-size: 1rem;
+    }
+    
+    .geometric-effect .text-1,
+    .geometric-effect .text-2,
+    .geometric-effect .text-3 {
+        font-size: 3rem;
+    }
+    
+    .cutout-text {
+        font-size: 6rem;
+    }
+    
+    .rotated-text {
+        font-size: 5rem !important;
+    }
+}
+
+/* Animation keyframes */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.05; }
+    50% { opacity: 0.15; }
+}
+
+/* Add subtle animations */
+.background-text {
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.circle, .triangle, .rotated-rectangle {
+    animation: float 6s ease-in-out infinite;
+}
+
+.image-placeholder {
+    animation: float 6s ease-in-out infinite 1s;
+}
