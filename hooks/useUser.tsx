@@ -33,10 +33,13 @@ export const MyUserContextProvider = (props: Props) => {
     const [isLoadingData, setIsLoadingData] = useState(false)
     const [userDetails, setUserDetails] = useState<Profile | null>(null)
 
-    const getUserDetails = () => supabase.from('users').select('*').single()
+    const getUserDetails = () => {
+        if (!supabase) return Promise.reject('Supabase not initialized');
+        return supabase.from('users').select('*').single()
+    }
 
     useEffect(() => {
-        if (user && !isLoadingData && !userDetails) {
+        if (user && !isLoadingData && !userDetails && supabase) {
             setIsLoadingData(true)
 
             Promise.allSettled([getUserDetails()]).then(
@@ -53,7 +56,7 @@ export const MyUserContextProvider = (props: Props) => {
         } else if (!user && !isLoadingUser && !isLoadingData) {
             setUserDetails(null);
         }
-    }, [user, isLoadingUser])
+    }, [user, isLoadingUser, supabase])
 
     const value = {
         accessToken,
